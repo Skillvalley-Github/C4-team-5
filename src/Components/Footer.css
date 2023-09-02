@@ -1,0 +1,16 @@
+.foot{
+    width: 97vw;
+    min-height: 10vw;
+    /* border: 1px solid brown; */
+    margin: 1.5vw;
+    background-color: rgb(11, 40, 23);
+    border-radius: 10px;
+    padding: 5vw 10vw 3vw;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+.boxa{
+    display: flex;
+    flex-direction: row;
+    color: white;
+}
