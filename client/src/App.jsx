@@ -1,27 +1,22 @@
-import './App.css';
-import Navbar from '../src/Components/Navbar';
-import { Footer } from './Components/Footer';
+import "./App.css";
+import Navbar from "../src/Components/Navbar";
+import { Footer } from "./Components/Footer";
+import { Routes, Route} from "react-router-dom";
+import Messages from "./pages/messages";
+import FindWork from "./pages/adminPanel/findWork";
 
 function App() {
+
   return (
     <>
-     <Navbar/>
-     <div className="main">
-      <div className="box1"></div>
-      <div className="box2">
-        <div className="dp"></div>
-        <div className="name">Shantanu M.</div>
-        <div className="role">Front-End-Developer</div>
-        <div className="bartext">Complete your profile</div>
-        <div className="bar">
-          <div className="bar1">
-            <div className="fill"></div>
-          </div>
-          <div className="per">40%</div>
-        </div>
-      </div>
-     </div>
-     <Footer/>
+      <Navbar />
+      <Routes>
+        <Route exact path="/messages" element={<Messages />} />
+        <Route exact path="/findWork" element={<FindWork />} />
+        <Route exact path="/messages" element={<Messages />} />
+        <Route exact path="/messages" element={<Messages />} />
+      </Routes>
+      <Footer />
     </>
   );
 }
