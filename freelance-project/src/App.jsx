@@ -3,6 +3,7 @@ import { useState } from 'react'
 // import viteLogo from '/vite.svg'
 import './App.css'
 import Navbar from './Components/Navbar'
+import Main from './Components/Main'
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
   return (
     <>
      <Navbar/>
+     <Main/>
     </>
   )
 }

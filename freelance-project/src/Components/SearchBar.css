@@ -1,0 +1,28 @@
+.search{
+    height: 30px;
+    width: 30px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+
+}
+
+.search img{
+    width: 20px;
+}
+
+.input_text{
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+}
+
+.searchbar_container{
+    display: flex;
+    border: 1px solid green;
+    margin:10px 0px;
+    border-radius: 5px;
+}

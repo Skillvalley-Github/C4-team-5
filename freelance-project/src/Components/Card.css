@@ -1,0 +1,51 @@
+.container{
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+    padding: 20px;
+  
+}
+.title_container{
+    display: flex;
+    justify-content: space-between;
+}
+.card_title{
+
+}
+.time{
+    font-weight: bold;
+}
+
+.container p{
+    font-size: 24;
+}
+
+.skills{
+    display: flex;
+    gap: 10px;
+}
+
+.skills a{
+    text-decoration: none;
+    background-color: grey;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: white;
+}
+
+.button_img{
+    width: 20px;
+}
+.btn{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.button_container{
+    display: flex;
+    gap: 4px;
+}
+
+.proposal{
+    font-weight: bold;
+}

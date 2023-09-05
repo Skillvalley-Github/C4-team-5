@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./Navbar.css";
 import bell from "../assets/iconmonstr-bell-3.svg";
 import question from "../assets/iconmonstr-question-thin-img.svg";
@@ -6,6 +6,7 @@ import paperPlane from "../assets/iconmonstr-paper-plane-7.svg";
 
 
 const Navbar = () => {
+    const [toggle, setToggle] = useState(true);
     return (
         <div className='navbar'>
             <div className="left-nav">
@@ -18,7 +19,17 @@ const Navbar = () => {
                     <span className='navbar_buttons_button'><a href="">Reports</a></span>
                     <span className='navbar_buttons_button'><a href="">Messages</a></span>
                 </div>
+
+
+               
             </div>
+
+            <div className='navbar_buttons_extra'>
+                    <span className='navbar_buttons_extra_button'><a href="">Find Works</a></span>
+                    <span className='navbar_buttons_extra_button'><a href="">My jobs</a></span>
+                    <span className='navbar_buttons_extra_button'><a href="">Reports</a></span>
+                    <span className='navbar_buttons_extra_button'><a href="">Messages</a></span>
+                </div>
 
             <div className="right-nav">
                 <span><a href=""><img src={question} alt="" srcset="" /></a></span>
