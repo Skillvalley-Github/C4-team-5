@@ -1,0 +1,35 @@
+.messages{
+    background-color: whitesmoke;
+    padding: 10px;
+    height: calc(100% - 160px);
+
+    .message{
+        display: flex;
+        gap: 20px;
+
+        .messageInfo{
+            display: flex;
+            flex-direction: column;
+            color: rgb(61, 56, 56);
+            font-weight: 300;
+            border-radius: 0px 10px 10px 10px;
+            max-width: max-content;
+            position: relative;
+            top: 5vh;
+        }
+        .messageContent{
+            display: flex;
+            align-items: flex-end;
+            flex-direction: column;
+            color: rgb(61, 56, 56);
+            font-weight: 300;
+            border-radius: 0px 10px 10px 10px;
+            background-color: rgb(255, 245, 231);
+            max-width: max-content;
+        }
+
+        &.owner{
+            flex-direction: row-reverse;
+        }
+    }
+}

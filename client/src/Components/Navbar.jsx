@@ -18,7 +18,7 @@ const Navbar = () => {
         </div>
 
         <div className="navbar_buttons">
-          <Link to="/findWorks">
+          <Link to="/findWork">
             <span className="navbar_buttons_button">
               <a href="">Find Works</a>
             </span>
