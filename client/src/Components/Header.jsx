@@ -5,7 +5,7 @@ import arrow from '../SVGs/arrow.svg'
 import search from '../SVGs/search.svg'
 
 export const Header = (props) => {
-  return (
+  return ( 
         <div className="head">
             <div className="b1">
                 <div className="name">Hi {props.name}</div>
