@@ -11,6 +11,7 @@ export const Header = (props) => {
                 <div className="name">Hi {props.name}</div>
                 <div className="overview">This is your Freelancer Team {props.overview} overview</div>
             </div>
+            <>
             <div className="b2 f">
                 <input type="text" placeholder='Type to search'/>
                 <img src={search} alt="" />
@@ -23,6 +24,7 @@ export const Header = (props) => {
                 <div className="name2">{props.name}</div>
                 <img src={arrow} alt="" />
             </div>
+            </>
         </div>
     )
 }

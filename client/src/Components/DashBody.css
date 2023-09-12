@@ -1,5 +1,6 @@
 .dash{
     width: 100%;
+    height: auto;
     flex-direction: column;
     /* border: 1px solid rgb(144, 14, 0); */
     box-sizing: border-box;
@@ -51,3 +52,39 @@
 .perR{
     color: rgb(221, 3, 3);
 }
+
+
+@media screen and (max-width: 1000px){
+    .bd{
+        flex-direction: column;
+    }
+    .bd .bd1, .bd .bd2{
+        width: 80vw;
+    }
+    .sb{
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 2;
+    }
+    .Rbody{
+        margin-left: 45px;
+    }
+    .b2, .name2{
+        display: none;
+    }
+    .head{
+        height: 150px;
+        align-items:flex-start;
+    }
+    .b3{
+        margin: 13px 0px;
+    }
+    .b1{
+        top: 80px;
+    }
+    .pr{
+        margin: 10px 0px;
+        width: 100%;
+    }
+  }

@@ -15,7 +15,7 @@ import wiki from '../SVGs/wiki.png'
 export const DashBody = () => {
   return (
     
-    <div className='f dash'>
+    <div className='dash'>
         <div className="f d1">
             <div className="f cd1">
                 <div className="f logo1">
@@ -65,7 +65,6 @@ export const DashBody = () => {
             </div>
         </div>
         <div className="f bd">
-            <div className="f bd1">Space for graph</div>
             <div className="f bd2">
                 <div className="prHead">Active Projects</div>
                 <div className="prs">
@@ -150,6 +149,7 @@ export const DashBody = () => {
                     </div>
                 </div>
             </div>
+            <div className="f bd1">Space for graph</div>
         </div>
     </div>
   )

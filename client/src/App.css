@@ -7,4 +7,9 @@
 .main{
   display: flex;
   flex-direction: row;
+  min-width: none;
+  min-height: 100vh;
+  /* border: 1px solid blueviolet; */
 }
+
+
