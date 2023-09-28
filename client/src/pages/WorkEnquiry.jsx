@@ -1,7 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import { styled } from "@mui/material/styles";
-import { Box, Grid, Stack, Card, TextField, Paper } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Stack,
+  Card,
+  TextField,
+  Paper,
+  Avatar,
+  Typography,
+} from "@mui/material";
 import "./WorkEnquiry.css";
 import supabase from "../supabase";
 
@@ -34,7 +43,7 @@ function WorkEnquiry() {
 
     // backend connection
 
-    const { data:messages, error } = await supabase
+    const { data: messages, error } = await supabase
       .from("messages")
       .upsert([{ content: messageInput }])
       .select();
@@ -72,13 +81,88 @@ function WorkEnquiry() {
         {/* contact list */}
         <Grid container spacing={2} columns={16} className="GridScroll">
           <Grid item xs={6} sx={{ minHeight: "100vh" }}>
-            <Item>
+            <Item sx={{ minHeight: "90vh" }}>
               <Stack spacing={3}>
-                <Item sx={{ p: 4, height: 35 }}>Item 1</Item>
-                <Item sx={{ p: 4, height: 45, m: 0 }}>Item 2</Item>
-                <Item sx={{ p: 4, height: 45, m: 0 }}>Item 2</Item>
-                <Item sx={{ p: 4, height: 45, m: 0 }}>Item 2</Item>
-                <Item sx={{ p: 4, height: 45, m: 0 }}>Item 2</Item>
+                <Item
+                  sx={{
+                    p: 4,
+                    height: 35,
+                    display: "flex",
+                    // flexDirection: "column",
+                  }}
+                >
+                  <Avatar
+                    alt="Remy Sharp"
+                    src="/static/images/avatar/1.jpg"
+                    sx={{ width: 40, height: 40 }}
+                  />
+                  <Typography
+                    variant="h6"
+                    sx={{ position: "relative", left: "10%" }}
+                  >
+                    Shreyash
+                  </Typography>
+                </Item>
+                <Item
+                  sx={{
+                    p: 4,
+                    height: 35,
+                    display: "flex",
+                    // flexDirection: "column",
+                  }}
+                >
+                  <Avatar
+                    alt="Remy Sharp"
+                    src="/static/images/avatar/1.jpg"
+                    sx={{ width: 40, height: 40 }}
+                  />
+                  <Typography
+                    variant="h6"
+                    sx={{ position: "relative", left: "10%" }}
+                  >
+                    Subhransu
+                  </Typography>
+                </Item>
+                <Item
+                  sx={{
+                    p: 4,
+                    height: 35,
+                    display: "flex",
+                    // flexDirection: "column",
+                  }}
+                >
+                  <Avatar
+                    alt="Remy Sharp"
+                    src="/static/images/avatar/1.jpg"
+                    sx={{ width: 40, height: 40 }}
+                  />
+                  <Typography
+                    variant="h6"
+                    sx={{ position: "relative", left: "10%" }}
+                  >
+                   Sandeep
+                  </Typography>
+                </Item>
+                <Item
+                  sx={{
+                    p: 4,
+                    height: 35,
+                    display: "flex",
+                    // flexDirection: "column",
+                  }}
+                >
+                  <Avatar
+                    alt="Remy Sharp"
+                    src="/static/images/avatar/1.jpg"
+                    sx={{ width: 40, height: 40 }}
+                  />
+                  <Typography
+                    variant="h6"
+                    sx={{ position: "relative", left: "10%" }}
+                  >
+                    Balaji
+                  </Typography>
+                </Item>
               </Stack>
             </Item>
           </Grid>

@@ -6,7 +6,8 @@ import { Routes, Route } from 'react-router';
 import WorkEnquiry from '../pages/WorkEnquiry';
 import InvoiceGenerator from '../pages/Invoice';
 import Profile from '../pages/ProfileManagement';
-
+import Projects from '../pages/Projects';
+import Contract from './Contract';
 
 export const Rbody = () => {
   return (
@@ -17,8 +18,11 @@ export const Rbody = () => {
         <Routes>
           <Route path="/" element={<DashBody />} />
           <Route path="/workenquiry" element={<WorkEnquiry />} />
-          <Route path="/Profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/invoice" element={<InvoiceGenerator />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/contracts" element={<Contract />} />
+          
         </Routes>
         </div>
         
