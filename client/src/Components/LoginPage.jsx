@@ -44,7 +44,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const defaultTheme = createTheme();
 
-export default function SignUp() {
+export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -55,7 +55,7 @@ export default function SignUp() {
   };
 
   return (
-    <Container sx={{backgroundImage: "linearGradient(#90EE90, white)"}}>
+    <Container sx={{ backgroundImage: "linearGradient(#90EE90, white)" }}>
       <ThemeProvider theme={defaultTheme}>
         <Container component="main" maxWidth="xs">
           <Typography
@@ -67,7 +67,7 @@ export default function SignUp() {
               alignItems: "center",
               position: "relative",
               top: "20%",
-              fontSize:"200%"
+              fontSize: "200%",
             }}
           >
             FreeLancerShala
@@ -85,7 +85,7 @@ export default function SignUp() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign up
+              Login
             </Typography>
             <Box
               component="form"
@@ -94,27 +94,6 @@ export default function SignUp() {
               sx={{ mt: 3 }}
             >
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    autoComplete="given-name"
-                    name="firstName"
-                    required
-                    fullWidth
-                    id="firstName"
-                    label="First Name"
-                    autoFocus
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="lastName"
-                    label="Last Name"
-                    name="lastName"
-                    autoComplete="family-name"
-                  />
-                </Grid>
                 <Grid item xs={12}>
                   <TextField
                     required
@@ -144,13 +123,11 @@ export default function SignUp() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2, backgroundColor: "teal" }}
               >
-                Sign Up
+                <Link to="/dashboard">Login</Link>
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link to='/login'>
-                    Already have an account? Sign in
-                  </Link>
+                  <Link to="/signup">Don't have account</Link>
                 </Grid>
               </Grid>
             </Box>
