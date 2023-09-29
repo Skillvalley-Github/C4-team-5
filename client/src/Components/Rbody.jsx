@@ -22,6 +22,7 @@ export const Rbody = () => {
           <Route path="/invoice" element={<InvoiceGenerator />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/contracts" element={<Contract />} />
+          <Route path="*" element={"page not found"}/>
           
         </Routes>
         </div>

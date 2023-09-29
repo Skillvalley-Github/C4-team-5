@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const uploadContract = require("./controllers/contractController");
 const multer = require("multer");
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const contractRouter = require('./routes/contractRoutes');
+const contractRouter = require('./routes/clientRoutes');
 
 dotenv.config({ path: "./env" });
 app.use(cors());
@@ -25,14 +24,14 @@ app.use(cors());
 //   });
 
   // Define storage for uploaded files
-  const storage = multer.diskStorage({
-    destination: './uploads/',
-    filename: (req, file, callback) => {
-      callback(null, file.originalname);
-    },
-  });
+  // const storage = multer.diskStorage({
+  //   destination: './uploads/',
+  //   filename: (req, file, callback) => {
+  //     callback(null, file.originalname);
+  //   },
+  // });
   
-  const upload = multer({ storage: storage });
+  // const upload = multer({ storage: storage });
 
 // Serve the static files in the 'uploads' directory
 // app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

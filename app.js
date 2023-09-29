@@ -1,5 +1,5 @@
 const express = require('express');
-const contractRoutes = require('./routes/contractRoutes');
+const contractRoutes = require('./routes/clientRoutes');
 
 const app = new express();
 
