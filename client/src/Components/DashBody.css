@@ -1,0 +1,90 @@
+.dash{
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    /* border: 1px solid rgb(144, 14, 0); */
+    box-sizing: border-box;
+}
+.d1{
+    width: 100%;
+    justify-content: space-around;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+.cd1{
+    width: 255px;
+    height: 100px;
+    margin: 10px;
+    border: 1px solid rgb(227, 227, 227);
+    border-radius: 10px;
+    position: relative;
+    justify-content: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.logo1{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgb(193, 234, 140);
+}
+.txt1{
+
+    padding: 10px;
+}
+.tx1{
+    font-size: 25px;
+    padding: 10px;
+    font-weight: 500;
+}
+.tx2{
+    font-size: 12px;
+    color:rgb(151, 150, 150);
+    font-weight: 500px;
+}
+.perG{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color : rgb(14, 170, 14);
+    font-weight: 700;
+}
+.perR{
+    color: rgb(221, 3, 3);
+}
+
+
+@media screen and (max-width: 1000px){
+    .bd{
+        flex-direction: column;
+    }
+    .bd .bd1, .bd .bd2{
+        width: 80vw;
+    }
+    .sb{
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 2;
+    }
+    .Rbody{
+        margin-left: 45px;
+    }
+    .b2, .name2{
+        display: none;
+    }
+    .head{
+        height: 150px;
+        align-items:flex-start;
+    }
+    .b3{
+        margin: 13px 0px;
+    }
+    .b1{
+        top: 80px;
+    }
+    .pr{
+        margin: 10px 0px;
+        width: 100%;
+    }
+  }
