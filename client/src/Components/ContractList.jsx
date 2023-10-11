@@ -4,11 +4,30 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Divider from "@mui/material/Divider";
+import { useState } from "react";
 
 function ContractList(props) {
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
+
+  const mystyle = {
+    backgroundColor: isHovering ? "#E8E8E8" : "white",
+  };
+
   return (
     <>
-      <ListItem>
+      <ListItem
+        style={mystyle}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <ListItemAvatar>
           <Avatar>{/* <ImageIcon /> */}</Avatar>
         </ListItemAvatar>

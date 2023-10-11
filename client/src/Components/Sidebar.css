@@ -7,6 +7,7 @@
     /* border: 1px solid red; */
     /* transition: 1s; */
     /* bottom: 0; */
+    position: sticky;
 }
 .NavBox{
     /* border: 1px solid red; */
@@ -17,6 +18,8 @@
     font-size: 25px;
     color: white;
     margin: 20px 0;
+    position: sticky;
+
 }
 .hName{
     margin-right: 15px;

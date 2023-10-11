@@ -9,6 +9,7 @@ import Profile from "../pages/ProfileManagement";
 import Projects from "../pages/Projects";
 import Contract from "./Contract";
 import { Sidebar } from "./Sidebar";
+import Apply from "../pages/Apply";
 
 export const Rbody = () => {
   return (
@@ -17,15 +18,16 @@ export const Rbody = () => {
       <div className="Rbody">
         <Header name="Sohidur Rahman" overview="Dashboard" />
         {/* <DashBody/> */}
-        {/* <Routes>
+        <Routes>
           <Route path="/dashboard" element={<DashBody />} />
           <Route path="/workenquiry" element={<WorkEnquiry />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/invoice" element={<InvoiceGenerator />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/contracts" element={<Contract />} />
-          {/* <Route path="*" element={"page not found"}/> */}
-        {/* </Routes> */}
+          <Route path="/apply" element={<Apply />} />
+          <Route path="*" element={"page not found"} />
+        </Routes>
       </div>
     </>
   );
