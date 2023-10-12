@@ -133,7 +133,7 @@ function InvoiceGenerator() {
   return (
     <>
       <Box>
-        <Card sx={{ minHeight: 200 }}>
+        {/* <Card sx={{ minHeight: 200 }}> */}
           <FormControl
             sx={{
               display: "flex",
@@ -188,7 +188,7 @@ function InvoiceGenerator() {
               Generate Invoice
             </Button>
           </FormControl>
-        </Card>
+        {/* </Card> */}
         <Card id="pdf"></Card>
         <input
           type="file"

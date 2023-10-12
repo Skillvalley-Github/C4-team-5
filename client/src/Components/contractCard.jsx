@@ -31,8 +31,8 @@ function ContractCard(props) {
         }}
       >
         <ContractList companyName="Kwabey" sendingDate={currentDate} />
-        <ContractList companyName="Kwabey" sendingDate={currentDate} />
-        <ContractList companyName="Kwabey" sendingDate={currentDate} />
+        <ContractList companyName="Nasdaq" sendingDate={currentDate} />
+        <ContractList companyName="Morgan Stanley" sendingDate={currentDate} />
       </List>
     </>
   );

@@ -11,6 +11,8 @@ import { Typography } from "@mui/material";
 import { Stack, Chip } from "@mui/material";
 import location from "./location.png";
 import Job from "../Components/jobItem";
+import Rating from "@mui/material/Rating";
+import LinearProgress from "@mui/material/LinearProgress";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -21,6 +23,25 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function Projects() {
+  const [value, setValue] = React.useState(2);
+  const [progress, setProgress] = React.useState(10);
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      // setProgress((oldProgress) => {
+      //   if (oldProgress === 100) {
+      //     return 0;
+      //   }
+      //   const diff = Math.random() * 10;
+      //   return Math.min(oldProgress + diff, 100);
+      // });
+    }, 500);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   return (
     <>
       {/* search */}
@@ -44,7 +65,7 @@ function Projects() {
                 alignItems: "center",
               }}
             >
-              <Item sx={{ width: 200 }}>
+              <Item sx={{ width: 200 }} style={{ backgroundColor: "#F0FFF0" }}>
                 <Avatar
                   alt="Remy Sharp"
                   src="/static/images/avatar/1.jpg"
@@ -64,12 +85,21 @@ function Projects() {
                   sx={{ m: 2 }}
                 >
                   <Box item xs={14} sx={{ m: 1 }}>
-                    <Item sx={{ fontWeight: "bolder" }}>
-                      Javascript Developer
+                    <Item sx={{ fontWeight: "bolder" }}>ReactJS Developer</Item>
+                  </Box>
+                  <Box item sx={{ m: 1 }}>
+                    <Item>
+                      <Rating name="read-only" value={value} readOnly />
                     </Item>
                   </Box>
                   <Box item sx={{ m: 1 }}>
-                    <Item>Rating</Item>
+                    <Typography style={{ fontSize: 15 }}>
+                      Complete your profile
+                    </Typography>
+                    <Grid item xs={13}>
+                      <LinearProgress variant="determinate" value={progress} />
+                      <Typography style={{ fontSize: 12 }}>{progress}</Typography>
+                    </Grid>
                   </Box>
                 </Grid>
               </Item>
