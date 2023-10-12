@@ -1,10 +1,12 @@
-const express = require('express');
-const contractRoutes = require('./routes/clientRoutes');
+const express = require("express");
+const documentRoutes = require('./routes/documentRoutes');
+const userRoutes = require("./routes/userRoutes");
 
 const app = new express();
 
 app.use(express.static(`${__dirname}/public`));
 
-app.use('/uploads',contractRoutes);
+app.use("/upload", documentRoutes);
+app.use("/user", userRoutes);
 
 module.exports = app;
