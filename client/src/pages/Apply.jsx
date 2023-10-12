@@ -3,10 +3,19 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
-import { Container, FormControl, TextField, Typography } from "@mui/material";
+import {
+  Container,
+  FormControl,
+  TextField,
+  ThemeProvider,
+  Typography,
+  createTheme,
+} from "@mui/material";
 import { TextareaAutosize } from "@mui/base/TextareaAutosize";
-import Button from '@mui/material/Button';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import Button from "@mui/material/Button";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { FormLabel } from "@mui/material";
+import { Grid } from "@mui/material";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -16,15 +25,15 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const VisuallyHiddenInput = styled('input')({
-  clip: 'rect(0 0 0 0)',
-  clipPath: 'inset(50%)',
+const VisuallyHiddenInput = styled("input")({
+  clip: "rect(0 0 0 0)",
+  clipPath: "inset(50%)",
   height: 1,
-  overflow: 'hidden',
-  position: 'absolute',
+  overflow: "hidden",
+  position: "absolute",
   bottom: 0,
   left: 0,
-  whiteSpace: 'nowrap',
+  whiteSpace: "nowrap",
   width: 1,
 });
 
@@ -84,45 +93,81 @@ const StyledTextarea = styled(TextareaAutosize)(
 `
 );
 
+const defaultTheme = createTheme();
+
 function Apply() {
   return (
     <>
       {/* Coverletter */}
-      <Box sx={{ width: "100%" }}>
-        <Stack spacing={2}>
-          <Item>
-            <FormControl style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-              <Typography style={{ fontSize: 20 }}>
-                Submit Your Additional Details
-              </Typography>
-              <Typography style={{ fontSize: 15, fontWeight: "bolder" }}>
-                Cover Letter
-              </Typography>
-              <StyledTextarea
-                aria-label="minimum height"
-                minRows={8}
-                placeholder=""
-                
-              />
-
-              <Typography style={{ fontSize: 15, fontWeight: "bolder" }}>
-                Upload Resume
-              </Typography>
-              <Box width="70%" style={{display:"flex", justifyContent:"center",alignItems:"center", width:1000}}>
-                <Item style={{ backgroundColor: "	#FFF8DC" }}>
-                  <Button
-                    component="label"
-                    variant="contained"
-                    startIcon={<CloudUploadIcon />}
+      <Paper
+        elevation={0}
+        style={{
+          height: "100vh",
+          backgroundColor: "#FFFFF0",
+          display: "flex",
+          justifyContent: "center",
+          // alignItems: "center",
+        }}
+      >
+        <ThemeProvider theme={defaultTheme}>
+          <Stack spacing={2}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={10}>
+                <FormControl
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                  sx={{ m: 2 }}
+                >
+                  <Typography style={{ fontSize: 20 }}>
+                    Just one more task to go
+                  </Typography>
+                  <FormLabel
+                    style={{ fontSize: 15, fontWeight: "bolder" }}
+                    sx={{ m: 2 }}
                   >
-                    <VisuallyHiddenInput type="file" />
-                  </Button>
-                </Item>
-              </Box>
-            </FormControl>
-          </Item>
-        </Stack>
-      </Box>
+                    Cover Letter
+                  </FormLabel>
+                  <StyledTextarea
+                    aria-label="minimum height"
+                    minRows={8}
+                    placeholder=""
+                    sx={{ height: 200,width:700, mb: 3 }}
+                  />
+                  <FormLabel style={{ fontSize: 15, fontWeight: "bolder" }}>
+                    Upload Resume
+                  </FormLabel>
+                  <Box
+                    width="70%"
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      width: 1000,
+                    }}
+                    sx={{ mt: 2, mb: 4 }}
+                  >
+                    <Item style={{ backgroundColor: "	#FFF8DC" }}>
+                      <Button
+                        component="label"
+                        variant="contained"
+                        startIcon={<CloudUploadIcon />}
+                      >
+                        <VisuallyHiddenInput type="file" />
+                      </Button>
+                    </Item>
+                  </Box>
+                  <Grid>
+                    <Button variant="contained">Apply Now</Button>
+                  </Grid>
+                </FormControl>
+              </Grid>
+            </Grid>
+          </Stack>
+        </ThemeProvider>
+      </Paper>
       {/*submit your resume.  */}
     </>
   );
