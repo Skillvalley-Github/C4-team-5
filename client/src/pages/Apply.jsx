@@ -16,6 +16,8 @@ import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { FormLabel } from "@mui/material";
 import { Grid } from "@mui/material";
+import supabase from "../supabase";
+import { useState } from "react";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -96,6 +98,21 @@ const StyledTextarea = styled(TextareaAutosize)(
 const defaultTheme = createTheme();
 
 function Apply() {
+
+  const [resume, setResume] = useState('');
+
+  async function handleApplyJob() {
+    //supabase
+    const { data, error } = await supabase.storage
+    .from("resume")
+    .upload(`resume_${Date.now()}.pdf`, resume);
+  if (error) {
+    console.log(error);
+    return;
+  } 
+  }
+
+
   return (
     <>
       {/* Coverletter */}
@@ -150,17 +167,20 @@ function Apply() {
                     sx={{ mt: 2, mb: 4 }}
                   >
                     <Item style={{ backgroundColor: "	#FFF8DC" }}>
-                      <Button
+                      <input type="file" onChange={(e) => {
+                        setResume(e.target.files[0]);
+                      }} />
+                      {/* <Button
                         component="label"
                         variant="contained"
                         startIcon={<CloudUploadIcon />}
                       >
-                        <VisuallyHiddenInput type="file" />
-                      </Button>
+                      
+                      </Button> */}
                     </Item>
                   </Box>
-                  <Grid>
-                    <Button variant="contained">Apply Now</Button>
+                  <Grid>  
+                    <Button variant="contained" onClick={handleApplyJob}>Apply Now</Button>
                   </Grid>
                 </FormControl>
               </Grid>

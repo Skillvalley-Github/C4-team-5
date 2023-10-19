@@ -4,10 +4,84 @@ import ContractCard from "./contractCard";
 import { Box, Typography, Card, Grid } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 import { styled } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { Button } from "@mui/material";
+import supabase from "./../supabase";
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: "#00693E",
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
+
+function createData(
+  contractID,
+  companyName,
+  amount,
+  startDate,
+  duartion,
+  status
+) {
+  return { contractID, companyName, amount, startDate, duartion, status };
+}
+
+const rows = [
+  createData(
+    "a8a21757-4f19-4ce0-86c4-2661dc5a43af",
+    "TST",
+    100,
+    "12-10-2023",
+    "1 month",
+    "Completed"
+  ),
+  createData(
+    "a8a21757-4f19-4ce0-86c4-2661dc5a43af",
+    "MindFry",
+    100,
+    "12-10-2023",
+    "1 month",
+    "Completed"
+  ),
+  createData(
+    "a8a21757-4f19-4ce0-86c4-2661dc5a43af",
+    "MindFry",
+    100,
+    "12-10-2023",
+    "1 month",
+    "Completed"
+  ),
+  createData(
+    "a8a21757-4f19-4ce0-86c4-2661dc5a43af",
+    "TST",
+    100,
+    "12-10-2023",
+    "1 month",
+    "Completed"
+  ),
+];
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -23,33 +97,38 @@ const VisuallyHiddenInput = styled("input")({
 
 function Contract(props) {
   const [selectedContract, setSelectedContract] = useState(null);
+  const [user, setUser] = useState([]);
+  const [freelancer, setFreelancer] = useState([]);
 
   async function handleUpload(e) {
-    // setSelectedContract(e.target.files[0]);
-    try {
-      const formData = new FormData();
+    let { freelancer } = await supabase
+      .from("freelancer")
+      .select("freelancer_id")
+      .then(setFreelancer(freelancer));
 
-      formData.append("file", selectedContract);
+    if (freelancer) {
+      console.log(freelancer);
+    }
 
-      console.log(selectedContract);
+    const { user } = await supabase.auth.getUser();
+    if (user) {
+      console.log(user);
+      setUser(user);
+    }
 
-      const response = await axios.post("http://localhost:4000/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data", // Set the content type for form data
-        },
-      }); 
-
-      // Handle the response from the server
-      console.log(response.data);
-    } catch (error) {
-      // Handle errors
-      console.error(error);
+    //supabase
+    const { data, error } = await supabase.storage
+      .from("contract")
+      .upload(`contract_${Date.now()}.pdf`, selectedContract);
+    if (error) {
+      console.log(error);
+      return;
     }
   }
 
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
+      {/* <Box sx={{ flexGrow: 1 }}>
         <Typography
           sx={{
             textAlign: "center",
@@ -81,7 +160,11 @@ function Contract(props) {
         </Grid>
       </Box>
 
-      <input type="file" name="file" onChange={(e)=>setSelectedContract(e.target.files[0])}/>
+      <input
+        type="file"
+        name="file"
+        onChange={(e) => setSelectedContract(e.target.files[0])}
+      />
       <Button
         component="label"
         variant="contained"
@@ -90,7 +173,60 @@ function Contract(props) {
         onClick={handleUpload}
       >
         Upload Contract
-      </Button>
+      </Button> */}
+
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell style={{ fontSize: 20 }}>
+                Contract ID
+              </StyledTableCell>
+              <StyledTableCell align="right" style={{ fontSize: 20 }}>
+                Company Name
+              </StyledTableCell>
+              <StyledTableCell align="right" style={{ fontSize: 20 }}>
+                Amount&nbsp;($)
+              </StyledTableCell>
+              <StyledTableCell align="right" style={{ fontSize: 20 }}>
+                Start Date
+              </StyledTableCell>
+              <StyledTableCell align="right" style={{ fontSize: 20 }}>
+                Duration
+              </StyledTableCell>
+              <StyledTableCell align="right" style={{ fontSize: 20 }}>
+                Status
+              </StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <StyledTableRow key={row.name}>
+                <StyledTableCell
+                  component="th"
+                  scope="row"
+                  style={{ fontSize: 15 }}
+                >
+                  {row.contractID}
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  {row.companyName}
+                </StyledTableCell>
+                <StyledTableCell align="right">{row.amount}</StyledTableCell>
+                <StyledTableCell align="right">
+                  <Button>{row.startDate}</Button>
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  <Button>{row.duartion}</Button>
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  <Button>{row.status}</Button>
+                </StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </>
   );
 }

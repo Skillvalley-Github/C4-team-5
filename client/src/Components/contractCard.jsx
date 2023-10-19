@@ -2,8 +2,15 @@ import { Typography, Divider, List } from "@mui/material";
 // import { ImageIcon, BeachAccessIcon, WorkIcon } from "@mui/icons-material";
 import React from "react";
 import ContractList from "./ContractList";
+import supabase from "../supabase";
 
 function ContractCard(props) {
+  async function handleDownload() {
+    const { data, error } = await supabase.storage
+      .from("contract")
+      .download("contract_1697137073129.pdf");
+  }
+
   const date = new Date();
 
   let currentDay = String(date.getDate()).padStart(2, "0");
@@ -30,9 +37,21 @@ function ContractCard(props) {
           bgcolor: "background.paper",
         }}
       >
-        <ContractList companyName="Kwabey" sendingDate={currentDate} />
-        <ContractList companyName="Nasdaq" sendingDate={currentDate} />
-        <ContractList companyName="Morgan Stanley" sendingDate={currentDate} />
+        <ContractList
+          companyName="TST"
+          sendingDate={currentDate}
+          onClick={handleDownload}
+        />
+        <ContractList
+          companyName="Nasdaq"
+          sendingDate={currentDate}
+          onClick={handleDownload}
+        />
+        <ContractList
+          companyName="Morgan Stanley"
+          sendingDate={currentDate}
+          onClick={handleDownload}
+        />
       </List>
     </>
   );

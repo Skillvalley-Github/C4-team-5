@@ -77,9 +77,9 @@ function WorkEnquiry() {
   };
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
+      {/* <Box sx={{ flexGrow: 1 }}>
         {/* contact list */}
-        <Grid container spacing={2} columns={16} className="GridScroll">
+        {/* <Grid container spacing={2} columns={16} className="GridScroll">
           <Grid item xs={6} sx={{ minHeight: "100vh" }}>
             <Item sx={{ minHeight: "90vh" }}>
               <Stack spacing={3}>
@@ -90,8 +90,8 @@ function WorkEnquiry() {
                     display: "flex",
                     // flexDirection: "column",
                   }}
-                >
-                  <Avatar
+                > */}
+                  {/* <Avatar
                     alt="Remy Sharp"
                     src="/static/images/avatar/1.jpg"
                     sx={{ width: 40, height: 40 }}
@@ -130,8 +130,8 @@ function WorkEnquiry() {
                     display: "flex",
                     // flexDirection: "column",
                   }}
-                >
-                  <Avatar
+                > */}
+                  {/* <Avatar
                     alt="Remy Sharp"
                     src="/static/images/avatar/1.jpg"
                     sx={{ width: 40, height: 40 }}
@@ -165,10 +165,10 @@ function WorkEnquiry() {
                 </Item>
               </Stack>
             </Item>
-          </Grid>
+          </Grid> */}
 
           {/* chat section */}
-          <Grid item xs={10}>
+          {/* <Grid item xs={10}>
             <Item>
               <Card
                 sx={{
@@ -202,14 +202,16 @@ function WorkEnquiry() {
                         />
                       </Card>
                     </Item>
-                    <Item>{/* <img src={sendBtn} alt="" /> */}</Item>
-                  </Stack>
-                </Grid>
-              </Grid>
-            </Item>
-          </Grid>
-        </Grid>
-      </Box>
+      //               <Item> <img src={sendBtn} alt="" /> </Item>
+      //             </Stack>
+      //           </Grid>
+      //         </Grid>
+      //       </Item>
+      //     </Grid>
+      //   </Grid>
+      // </Box>  */}
+
+    
     </>
   );
 }

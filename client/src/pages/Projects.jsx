@@ -13,6 +13,8 @@ import location from "./location.png";
 import Job from "../Components/jobItem";
 import Rating from "@mui/material/Rating";
 import LinearProgress from "@mui/material/LinearProgress";
+import supabase from "../supabase";
+import { useState } from "react";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -37,8 +39,9 @@ function Projects() {
       // });
     }, 500);
 
+
     return () => {
-      clearInterval(timer);
+        clearInterval(timer);
     };
   }, []);
 
@@ -98,7 +101,9 @@ function Projects() {
                     </Typography>
                     <Grid item xs={13}>
                       <LinearProgress variant="determinate" value={progress} />
-                      <Typography style={{ fontSize: 12 }}>{progress}</Typography>
+                      <Typography style={{ fontSize: 12 }}>
+                        {progress}
+                      </Typography>
                     </Grid>
                   </Box>
                 </Grid>

@@ -1,0 +1,15 @@
+{
+  "monthRevenue": 400,
+  "projectedAccepted": 24,
+  "CompletionRate": 95,
+  "ResponseTime": 4.5,
+  "ActiveProjects": [
+    "Homio Website",
+    " Abc Web Backend",
+    "Alpha Website",
+    "Wiki Toggles",
+    "Homio Website",
+    "LanWan Website"
+  ],
+  "TasksLeft": [5, 5, 5, 5, 5, 5]
+}

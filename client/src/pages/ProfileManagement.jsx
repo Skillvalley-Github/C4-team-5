@@ -1,190 +1,80 @@
 import React from "react";
-import supabase from "../supabase";
-import TextField from "@mui/material/TextField";
-import { useState } from "react";
-import { Button } from "@mui/base";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import { styled } from "@mui/material/styles";
+import { Button, Container, Typography } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
 
-function Profile() {
-  const [profile, setProfile] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    location: "",
-    title: "",
-    bio: "",
-    education: "",
-    workExperience: "",
-    certifications: "",
-    languages: "",
-    hourlyRate: "",
-    availabilty: "",
-    rating: "",
-  });
+//images
+import linkedIn from "../SVGs/linkedin.png";
+import web from "../SVGs/web.png";
+import twitter from "../SVGs/twitter.png";
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
-    try {
-      await supabase.from("profile").insert({
-        id: Math.random(),
-        name: profile.name,
-        phone: profile.phone,
-        email: profile.email,
-        location: profile.location,
-        title: profile.title,
-        bio: profile.bio,
-        education: profile.education,
-        workExperience: profile.workExperience,
-        certifications: profile.certifications,
-        languages: profile.languages,
-        hourlyRate: profile.hourlyRate,
-        availabilty: profile.availabilty,
-        rating: profile.rating,
-      });
-      console.log("data submitted successfully!");
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
+export default function Profile() {
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          id="outlined-basic"
-          label="name"
-          name="name"
-          value={profile.name}
-          variant="outlined"
-          onChange={(e) => {
-            setProfile(e.target.value);
+      <Container>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
-        />
-        <TextField
-          id="outlined-basic"
-          label="phone"
-          name="phone"
-          value={profile.phone}
-          variant="outlined"
-          onChange={(e) => {
-            setProfile(e.target.value);
-          }}
-        />
-        <TextField
-          id="outlined-basic"
-          label="email"
-          name="email"
-          value={profile.email}
-          variant="outlined"
-          onChange={(e) => {
-            setProfile(e.target.value);
-          }}
-        />
-        <TextField
-          id="outlined-basic"
-          label="location"
-          name="location"
-          value={profile.location}
-          variant="outlined"
-          onChange={(e) => {
-            setProfile(e.target.value);
-          }}
-        />
-        <TextField
-          id="outlined-basic"
-          label="title"
-          name="title"
-          value={profile.title}
-          variant="outlined"
-          onChange={(e) => {
-            setProfile(e.target.value);
-          }}
-        />
-        <TextField
-          id="outlined-basic"
-          label="bio"
-          name="bio"
-          value={profile.bio}
-          variant="outlined"
-          onChange={(e) => {
-            setProfile(e.target.value);
-          }}
-        />
-        {/* <input type="file" /> */}
-        <TextField
-          id="outlined-basic"
-          label="education"
-          name="education"
-          value={profile.education}
-          variant="outlined"
-          onChange={(e) => {
-            setProfile(e.target.value);
-          }}
-        />
-        <TextField
-          id="outlined-basic"
-          label="workExperience"
-          variant="outlined"
-          name="workExperience"
-          value={profile.workExperience}
-          onChange={(e) => {
-            setProfile(e.target.value);
-          }}
-        />
-        <TextField
-          id="outlined-basic"
-          label="certifications"
-          variant="outlined"
-          value={profile.certifications}
-          name="certifications"
-          onChange={(e) => {
-            setProfile(e.target.value);
-          }}
-        />
-        <TextField
-          id="outlined-basic"
-          label="languages"
-          name="languages"
-          value={profile.languages}
-          variant="outlined"
-          onChange={(e) => {
-            setProfile(e.target.value);
-          }}
-        />
-        <TextField
-          id="outlined-basic"
-          label="hourlyRate"
-          name="hourlyRate"
-          value={profile.hourlyRate}
-          variant="outlined"
-          onChange={(e) => {
-            setProfile(e.target.value);
-          }}
-        />
-        <TextField
-          id="outlined-basic"
-          label="availabilty"
-          name="availability"
-          value={profile.languages}
-          variant="outlined"
-          onChange={(e) => {
-            setProfile(e.target.value);
-          }}
-        />
-        <TextField
-          id="outlined-basic"
-          label="rating"
-          name="rating"
-          value={profile.rating}
-          variant="outlined"
-          onChange={(e) => {
-            setProfile(e.target.value);
-          }}
-        />
-        <Button type="submit">Submit</Button>
-      </form>
+        >
+          <Item
+            style={{
+              // backgroundColor: "	#D0F0C0",
+              borderRadius: "10px ",
+              width: 800,
+            }}
+          >
+            <Stack direction="row" spacing={2}>
+              <Avatar
+                alt="Remy Sharp"
+                src="/static/images/avatar/1.jpg"
+                sx={{ width: 150, height: 150 }}
+              />
+              <Container>
+                <Stack direction="column" spacing={2}>
+                  <Typography style={{ fontSize: 40, color: "black" }}>
+                    Shohidur Rehman
+                  </Typography>
+                  <div className="icon">
+                    <img src={web} alt="" style={{ width: 20, margin: 10 }} />
+                    <img
+                      src={linkedIn}
+                      alt=""
+                      style={{ width: 20, margin: 10 }}
+                    />
+                    <img
+                      src={twitter}
+                      alt=""
+                      style={{ width: 20, margin: 10 }}
+                    />
+                    <Button variant="contained" style={{ margin: 6 }}>
+                      {" "}
+                      Message{" "}
+                    </Button>
+                    <Button variant="contained" style={{ margin: 6 }}>
+                      {" "}
+                      Share{" "}
+                    </Button>
+                  </div>
+                </Stack>
+              </Container>
+            </Stack>
+          </Item>
+        </Box>
+      </Container>
     </>
   );
 }
-
-export default Profile;

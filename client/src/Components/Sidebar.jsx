@@ -24,7 +24,7 @@ export const Sidebar = () => {
           </div>
           {toggle && (
             <>
-              <div className="hName">FreeLancerShala</div>
+              <div className="hName">SkillSprinters</div>
             </>
           )}
           {/* //is this the one  */}
@@ -44,7 +44,7 @@ export const Sidebar = () => {
           {toggle && (
             <>
               <div className="text">
-                <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                <Link to="" style={{ textDecoration: "none", color: "white" }}>
                   Dashboard
                 </Link>
               </div>
@@ -90,7 +90,7 @@ export const Sidebar = () => {
             <>
               <div className="text">
                 <Link
-                  to="/projects"
+                  to="projects"
                   style={{ textDecoration: "none", color: "white" }}
                 >
                   Projects
@@ -100,7 +100,7 @@ export const Sidebar = () => {
             </>
           )}
         </div>
-        <div className="card">
+        {/* <div className="card">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="24"
@@ -117,7 +117,7 @@ export const Sidebar = () => {
             <>
               <div className="text">
                 <Link
-                  to="/workenquiry"
+                  to="workenquiry"
                   style={{ textDecoration: "none", color: "white" }}
                 >
                   Work Enquiry
@@ -126,7 +126,7 @@ export const Sidebar = () => {
               <img src={arrow} alt="" className="flexlast" />
             </>
           )}
-        </div>
+        </div> */}
         <div className="card">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -143,7 +143,7 @@ export const Sidebar = () => {
           {toggle && (
             <>
               <div className="text">
-                <Link to="/contracts" style={{textDecoration:'none', color:'white'}}>Contracts</Link>
+                <Link to="contracts" style={{textDecoration:'none', color:'white'}}>Contracts</Link>
               </div>
               <img src={arrow} alt="" className="flexlast" />
             </>
@@ -165,7 +165,7 @@ export const Sidebar = () => {
             <>
               <div className="text">
                 <Link
-                  to="/invoice"
+                  to="invoice"
                   style={{ textDecoration: "none", color: "white" }}
                 >
                   Invoice
