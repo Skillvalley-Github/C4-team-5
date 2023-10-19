@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../Components/DashBody.css";
 import "../Components/Projects.css";
 import money from "../SVGs/money.svg";
@@ -12,6 +12,8 @@ import img2 from "../SVGs/img2.png";
 import wiki from "../SVGs/wiki.png";
 import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
+import supabase from "../supabase";
+import { useState } from "react";
 
 const labels = ["Money", "Skills", "Time Management", "Projects Accepted"];
 
@@ -25,21 +27,37 @@ const data = {
       data: [60, 70, 40, 24],
       options: {
         scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true,
-              min: 0,
-              max: 100,
-              stepSize: 20,
-            }
-          }]
-        }
-      }   
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+                min: 0,
+                max: 100,
+                stepSize: 20,
+              },
+            },
+          ],
+        },
+      },
     },
   ],
 };
 
 export const DashBody = () => {
+  const [dashBoardApi, setDashBoardApi] = useState([]);
+
+  useEffect(() => {
+    const dashBoardApi = async () => {
+      let { data: dashboard, error } = await supabase
+        .from("dashboard")
+        .select("*");      
+  
+        console.log(dashboard);
+        setDashBoardApi(dashboard);
+      };
+      dashBoardApi();
+}, []);
+
   return (
     <div className="dash">
       <div className="f d1">
@@ -48,7 +66,7 @@ export const DashBody = () => {
             <img src={money} alt="" />
           </div>
           <div className="txt1">
-            <div className="tx1">13,343</div>
+            {/* <div className="tx1">{dashBoardApi[0].dashboard.monthRevenue}</div> */}
             <div className="tx2">This month revenue</div>
           </div>
           <div className="perG">+1.5%</div>

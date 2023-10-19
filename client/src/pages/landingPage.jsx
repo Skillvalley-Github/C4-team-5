@@ -13,6 +13,14 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Grid from "@mui/material/Grid";
+import { useNavigate } from "react-router";
+import freelancer from '../SVGs/landpage.png';
+import contract from "../SVGs/contract.png";
+import invoice from "../SVGs/Invoice (2).png";
+import { Card } from "@mui/material";
+
+import { TypeAnimation } from "react-type-animation";
+
 // import { TypeAnimation } from "react-type-animation";
 
 const pages = ["Home", "How it Works", "Category"];
@@ -21,6 +29,8 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 function LandingPage() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -35,6 +45,14 @@ function LandingPage() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const navigateToLogin = () => {
+    navigate("/login");
+  };
+
+  const navigateToSignUp = () => {
+    navigate("/signup");
   };
 
   return (
@@ -58,7 +76,7 @@ function LandingPage() {
                 textDecoration: "none",
               }}
             >
-              FreelancerShala
+              SkillSprinters
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -158,10 +176,10 @@ function LandingPage() {
               </Menu>
             </Box> */}
 
-            <Button color="inherit" sx={{ mr: 3 }}>
+            <Button color="inherit" sx={{ mr: 3 }} onClick={navigateToLogin}>
               Login
             </Button>
-            <Button color="inherit" sx={{ mr: 3 }}>
+            <Button color="inherit" sx={{ mr: 3 }} onClick={navigateToSignUp}>
               SignUp
             </Button>
           </Toolbar>
@@ -176,7 +194,6 @@ function LandingPage() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            border: "2px solid red",
             minHeight: "100vh",
           }}
         >
@@ -188,9 +205,26 @@ function LandingPage() {
               ml: 2,
             }}
           >
-            "<span style={{ color: "teal" }}>FreelancerShala</span>: Where
-            <span style={{ color: "teal" }}>Skills</span> Find{" "}
-            <span style={{ color: "teal" }}>Opportunities</span>"
+            "<span style={{ color: "teal" }}>SkillSprinters</span>": Where
+            <span style={{ color: "teal" }}>
+              <TypeAnimation
+                sequence={["Skills", 2000, " Talent ", 2000]}
+                wrapper="span"
+                speed={150}
+                style={{ display: "inline-block" }}
+                repeat={Infinity}
+              />
+            </span>{" "}
+            Find{" "}
+            <span style={{ color: "teal" }}>
+              <TypeAnimation
+                sequence={["Opportunities", 800, "Success", 1200]}
+                wrapper="span"
+                speed={150}
+                style={{ display: "inline-block" }}
+                repeat={Infinity}
+              />
+            </span>
           </Typography>
         </Grid>
         <Grid
@@ -200,16 +234,41 @@ function LandingPage() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            border: "2px solid red",
             minHeight: "100vh",
           }}
-        ></Grid>
+        >
+          <img src={freelancer} alt="" style={{ width: "90%" }} />
+        </Grid>
       </Grid>
 
+      {/* features */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Typography style={{ fontSize: "200%", fontWeight: "bolder" }}>
+          Highly Featured App to Manage{" "}
+          <span style={{ color: "teal" }}>Contract 📜</span> And{" "}
+          <span style={{ color: "teal" }}>Invoice 💶</span> for Freelancer.
+        </Typography>
+      </div>
+      <div
+        className="images"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+       <img src={contract} alt=""  style={{width:500}}/>
+       <img src={invoice} alt="" style={{width:500}}/>
+       
+      </div>
+
       {/* footer */}
-
-        
-
     </>
   );
 }

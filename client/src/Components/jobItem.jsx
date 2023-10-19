@@ -21,6 +21,7 @@ function Job(props) {
   const navigate = useNavigate();
   const [showDetails, setShowDetails] = useState(false);
   const [apply, setApply] = useState(false);
+  const [jobData, setJobData] = useState([]);
 
   function applyAlert() {
     Swal.fire({
@@ -29,26 +30,25 @@ function Job(props) {
       icon: "swal2-icon-show",
       confirmButtonText: "Apply Now",
       confirmButtonColor: "green",
-    }).then(setApply(true));
-    if (apply) {
-      navigate("/apply");
-    }
+    })
+      .then(setApply(true))
+      .then(navigate("../apply"));
   }
 
-  const fetchJobs = async () => {
-    try {
-      console.log("entered into fetch jobs.");
-      let { data, error } = await supabase.from("job").select("*");
-      console.log("Data:", data);
-      setEvents(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  useEffect(() => {
+    const fetchJobs = async () => {
+      let { data: jobs, error } = await supabase.from("jobs").select("*");
+
+      console.log("data: ", jobs[0].job.jobDescription);
+      console.log("data: ", jobs[0].job.jobTitle);
+
+      setEvents(jobs);
+    };
+
+    fetchJobs();
+  }, []);
 
   useEffect(() => {
-    fetchJobs();
-
     const channel = supabase
       .channel("channel-for-jobs")
       .on(
@@ -75,16 +75,12 @@ function Job(props) {
             className="jobTitle"
             onClick={applyAlert}
           >
-            Google Chrome Extension Developer
-          </Typography>
+            {events[0].job.jobTitle}
+          </Typography> 
         </Stack>
         <Stack direction={"row"}>
           <Typography variant="body2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-            ipsum architecto exercitationem, eaque quis ratione harum numquam
-            vero qui quasi inventore pariatur repudiandae! Doloremque incidunt,
-            tenetur alias sed quis possimus. Fuga perferendis adipisci tempore.
-            {props.jobDescription}
+           {events[0].job.jobDescription}
           </Typography>
         </Stack>
         <Stack direction={"row"}>

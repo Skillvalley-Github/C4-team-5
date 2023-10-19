@@ -1,140 +1,47 @@
 import React from "react";
 import easyinvoice from "easyinvoice";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { Card, TextField } from "@mui/material";
 import { FormControl, FormLabel } from "@mui/material";
 import { useState } from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import axios from "axios";
+import supabase from "../supabase";
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
+import { useNavigate } from "react-router";
+
+import { Grid } from "@mui/material";
+
+import paidInvoice from "../SVGs/paid-invoice.png";
+import Invoice from "../SVGs/invoice.png";
+import warning from "../SVGs/warning.png";
+
+import "./invoice.css";
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
 function InvoiceGenerator() {
-  const [companyName, setCompanyName] = useState("");
-  const [companyAddress, setCompanyAddress] = useState("");
-  const [freelancerName, setFreelancerName] = useState("");
-  const [projectTitle, setProjectTitle] = useState("");
-  const [amount, setAmount] = useState("");
-  const [invoiceNo, setInvoiceNo] = useState("");
-  const [invoice, setInvoice] = useState(null);
 
-  const handleCompanyName = (e) => {
-    console.log("c");
-    setCompanyName(e.target.value);
-  };
+  const navigate = useNavigate();
 
-  const handleCompanyAddress = (e) => {
-    console.log("c");
 
-    setCompanyAddress(e.target.value);
-  };
-
-  const handleFreelancerName = (e) => {
-    console.log("c");
-
-    setFreelancerName(e.target.value);
-  };
-
-  const handleProjectTitle = (e) => {
-    console.log("c");
-
-    setProjectTitle(e.target.value);
-  };
-
-  const handleAmount = (e) => {
-    console.log("c");
-
-    setAmount(e.target.value);
-  };
-
-  const handleInvoiceNo = (e) => {
-    console.log("c");
-
-    setInvoiceNo(e.target.value);
-  };
-
-  async function handleUpload() {
-    try {
-      const formData = new FormData();
-      
-      console.log(invoice);
-      formData.append("invoice", invoice);
-
-       await axios.post(
-        "http://localhost:4000/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data", 
-          },
-        }
-      );
-      // console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async function generateInvoice() {
-    console.log("entered");
-
-    const data = {
-      documentTitle: "Invoice",
-      currency: "USD",
-      taxNotation: "vat",
-      marginTop: 25,
-      marginRight: 25,
-      marginLeft: 25,
-      marginBottom: 25,
-      logo: "FreelancerShala",
-      sender: {
-        company: companyName,
-        // address: "Mumbai",
-        // zip: "12345",
-        // city: "City",
-        // country: "Country",
-        address: companyAddress,
-        email: "info@example.com",
-        phone: "+1234567890",
-      },
-      client: {
-        company: freelancerName,
-        address: "456 Client Street",
-        zip: "54321",
-        city: "Client City",
-        country: "Client Country",
-        email: "client@example.com",
-        phone: "+9876543210",
-      },
-      invoiceNumber: invoiceNo,
-      invoiceDate: "2023-09-23",
-      products: [
-        {
-          description: projectTitle,
-          quantity: 2,
-          tax: 10,
-          price: amount,
-        },
-        // {
-        //   description: "Product 2",
-        //   quantity: 3,
-        //   tax: 10,
-        //   price: 75,
-        // },
-      ],
-      bottomNotice: "Thank you for your business!",
-    };
-
-    const result = await easyinvoice.createInvoice(data);
-    document.getElementById("pdf").innerHTML = "loading...";
-    console.log("PDF base64 string: ", result.pdf);
-    easyinvoice.download("myInvoice.pdf", result.pdf);
-    easyinvoice.render("pdf", result.pdf);
+  const handleInvoiceTable = () => {
+    console.log('clicked')
+    navigate('../allinvoices');
   }
 
   return (
     <>
       <Box>
         {/* <Card sx={{ minHeight: 200 }}> */}
-          <FormControl
+        {/* <FormControl
             sx={{
               display: "flex",
               justifyContent: "center",
@@ -184,18 +91,198 @@ function InvoiceGenerator() {
               sx={{ m: 2, mb: 5, width: 500 }}
               onChange={handleInvoiceNo}
             />
-            <Button variant="contained" onClick={generateInvoice}>
-              Generate Invoice
-            </Button>
-          </FormControl>
+          </FormControl> */}
         {/* </Card> */}
-        <Card id="pdf"></Card>
-        <input
+        <div
+          className="invoice"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Grid container spacing={2}>
+            <Grid item xs={2} sx={{ m: 3 }}>
+              <Item
+                style={{
+                  width: 200,
+                  margin: 8,
+                  minHeight: 200,
+                  backgroundColor: "#98FB98",
+                  backgroundImage: "linear-gradient('#17B169','#00693E')",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  boxShadow:" 1px 2px 3px 4px rgba(20,20,20,0.4)"
+                  
+                }}
+                className="boxes"
+                onClick={handleInvoiceTable}
+              >
+                <Typography
+                  style={{
+                    fontSize: "200%",
+                    color: "#FFF5EE",
+                    fontWeight: "bolder",
+                  }}
+                >
+                  Total Amount{" "}
+                </Typography>
+              </Item>
+            </Grid>
+            <Grid item xs={2} sx={{ m: 3 }}>
+              <Item
+                style={{
+                  width: 200,
+                  margin: 8,
+                  minHeight: 200,
+                  backgroundColor: "#98FB98",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  boxShadow:" 1px 2px 2px 3px rgba(20,20,20,0.4)"
+                }}
+                className="boxes"
+                onClick={handleInvoiceTable}
+              >
+                <Typography
+                  style={{
+                    fontSize: "200%",
+                    color: "#FFF5EE",
+                    fontWeight: "bolder",
+                  }}
+                >
+                  Total Paid{" "}
+                </Typography>
+              </Item>
+            </Grid>
+            <Grid item xs={2} sx={{ m: 3 }}>
+              <Item
+                style={{
+                  width: 200,
+                  margin: 8,
+                  minHeight: 200,
+                  backgroundColor: "#98FB98",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  boxShadow:" 1px 2px 2px 3px rgba(20,20,20,0.4)"
+                }}
+                className="boxes"
+                onClick={handleInvoiceTable}
+              >
+                <Typography
+                  style={{
+                    fontSize: "200%",
+                    color: "#FFF5EE",
+                    fontWeight: "bolder",
+                  }}
+                >
+                  Total Due{" "}
+                </Typography>
+              </Item>
+            </Grid>
+            <Grid item xs={2} sx={{ m: 3 }}>
+              <Item
+                style={{
+                  width: 200,
+                  margin: 8,
+                  minHeight: 200,
+                  backgroundColor: "#98FB98",
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  flexDirection:"column",
+                  boxShadow:" 1px 2px 2px 3px rgba(20,20,20,0.4)"
+                }}
+                className="boxes"
+                onClick={handleInvoiceTable}
+              >
+                <img src={Invoice} alt="" style={{width:70,margin:5}}/>
+                <Typography
+                  style={{
+                    fontSize: "200%",
+                    color: "#FFF5EE",
+                    fontWeight: "bolder",
+                  }}
+                >
+                  Total Invoices{" "}
+                </Typography>
+              </Item>
+            </Grid>
+            <Grid item xs={2} sx={{ m: 3 }}>
+              <Item
+                style={{
+                  width: 200,
+                  margin: 8,
+                  minHeight: 200,
+                  backgroundColor: "#98FB98",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection:"column",
+                  boxShadow:" 1px 2px 2px 3px rgba(20,20,20,0.4)"
+                }}
+                className="boxes"
+                onClick={handleInvoiceTable}
+              >
+                <img src={paidInvoice} alt="" style={{width:70,margin:5}}/>
+                <Typography
+                  style={{
+                    fontSize: "200%",
+                    color: "#FFF5EE",
+                    fontWeight: "bolder",
+                  }}
+                >
+                  Total Paid Invoices{" "}
+                </Typography>
+              </Item>
+            </Grid>
+            <Grid item xs={2} sx={{ m: 3 }}>
+              <Item
+                style={{
+                  width: 200,
+                  margin: 8,
+                  minHeight: 200,
+                  backgroundColor: "#FF3333",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection:"column",
+                  boxShadow:" 1px 2px 2px 3px rgba(20,20,20,0.4)"
+                }}
+                className="specialBox"
+                onClick={handleInvoiceTable}
+              > 
+                <img src={warning} alt="" style={{width:70,margin:5}}/>
+                <Typography
+                  style={{
+                    fontSize: "200%",
+                    color: "#FFF5EE",
+                    fontWeight: "bolder",
+                  }}
+                >
+                  Total Unpaid Invoices{" "}
+                </Typography>
+              </Item>
+            </Grid>
+          </Grid>
+        </div>
+
+        {/* genrate invoice */}
+        {/* <Button variant="contained" onClick={generateInvoice}>
+          Generate Invoice
+        </Button> */}
+        {/* <Card id="pdf"></Card> */}
+        
+        {/* <input
           type="file"
           name="invoice"
           onChange={(e) => setInvoice(e.target.files[0])}
-        />
-        <Button
+        /> */}
+
+        {/* upload invoice */}
+        {/* <Button
           component="label"
           variant="contained"
           startIcon={<CloudUploadIcon />}
@@ -203,7 +290,7 @@ function InvoiceGenerator() {
           onClick={handleUpload}
         >
           Upload Invoice
-        </Button>
+        </Button> */}
       </Box>
     </>
   );

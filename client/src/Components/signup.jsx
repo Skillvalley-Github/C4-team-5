@@ -61,7 +61,7 @@ export default function SignUp() {
       firstName,
       lastName,
       role,
-    });
+    }).then(navigate('/login'));
     setUser(data);
   }
 
@@ -81,7 +81,7 @@ export default function SignUp() {
               fontSize: "200%",
             }}
           >
-            FreeLancerShala
+            SkillSpriters
           </Typography>
           <CssBaseline />
           <Box
